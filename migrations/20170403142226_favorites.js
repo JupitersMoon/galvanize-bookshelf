@@ -1,14 +1,12 @@
 exports.up = function(knex) {
   return knex.schema.createTable('favorites', table => {
     table.increments();
-    table.string('book_id').notNullable();
-    .onDelete('CASCADE');
-    table.string('user_id').notNullable();
-    .onDelete('CASCADE');
+    table.integer('book_id').references('books.id').notNullable().onDelete('cascade');
+    table.integer('user_id').references('users.id').notNullable().onDelete('cascade');
     table.timestamps(true,true);
   });
 };
 
-exports.down = function(knex) {
+exports.down = (knex) => {
   return knex.schema.dropTable('favorites')
 };
