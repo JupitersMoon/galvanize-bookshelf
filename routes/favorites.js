@@ -42,7 +42,7 @@ router.post('/favorites/', (req, res, next) => {
     knex('favorites')
     .returning(['id', 'book_id', 'user_id'])
     .insert({
-      id: 2,
+      // id: 2,
       book_id: req.body.bookId,
       user_id: 1
     })
